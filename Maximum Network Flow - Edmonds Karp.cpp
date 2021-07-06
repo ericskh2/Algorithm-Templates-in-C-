@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
+#define INF 0x3f3f3f3f
 
 bool bfs(vector<vector<ll>>& graph, vector<int>& p, vector<ll>& a, int n, int s, int t) {
     for (int i = 0; i < a.size(); i++) {
