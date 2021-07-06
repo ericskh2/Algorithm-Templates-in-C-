@@ -13,8 +13,8 @@ bool bfs(vector<vector<ll>>& graph, vector<int>& p, vector<ll>& a, int n, int s,
     while (!q.empty()) {
         int curr = q.front();
         q.pop();
-        for (int i = 1; i < graph[curr].size(); i++) {
-            if (!a[i] && graph[curr][i]>0) {
+        for (int i = 0; i <= n+1; i++) {
+            if (!a[i] && graph[curr][i] > 0) {
                 p[i] = curr;
                 a[i] = min(a[curr], graph[curr][i]);
                 q.push(i);
@@ -30,13 +30,16 @@ int main() {
     cin.tie(NULL);
 
 
-    int s = 1;
-    int t = 1;
+    int s;
+    int t;
 
     int n, m;
-    cin >> n >> m >> s >> t;
+    cin >> n >> m>>s>>t;
 
-    vector<vector<ll>> graph(n + 1, vector<ll>(n + 1, 0));
+    //s = 0;
+    //t = n + 1;
+
+    vector<vector<ll>> graph(n + 2, vector<ll>(n + 2, 0));
 
 
     for (int i = 0; i < m; i++) {
@@ -45,12 +48,12 @@ int main() {
         graph[a][b] += c;
     }
 
-    vector<int> p(n + 1);
-    vector<ll> a(n + 1,0);
+    vector<int> p(n + 2);
+    vector<ll> a(n + 2, 0);
 
     ll ans = 0;
 
-    while (bfs(graph,p,a,n,s,t)) {
+    while (bfs(graph, p, a, n, s, t)) {
         for (int curr = t; curr != s; curr = p[curr]) {
             graph[p[curr]][curr] -= a[t];
             graph[curr][p[curr]] += a[t];
@@ -58,6 +61,6 @@ int main() {
         ans += a[t];
     }
 
-    cout << ans <<endl;
+    cout << ans << endl;
     return 0;
 }
