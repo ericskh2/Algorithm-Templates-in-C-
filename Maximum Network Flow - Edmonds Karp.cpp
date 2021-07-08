@@ -13,7 +13,7 @@ bool bfs(vector<vector<ll>>& graph, vector<int>& p, vector<ll>& a, int n, int s,
     while (!q.empty()) {
         int curr = q.front();
         q.pop();
-        for (int i = 0; i <= n+1; i++) {
+        for (int i = 0; i <= n + 1; i++) {
             if (!a[i] && graph[curr][i] > 0) {
                 p[i] = curr;
                 a[i] = min(a[curr], graph[curr][i]);
@@ -25,6 +25,20 @@ bool bfs(vector<vector<ll>>& graph, vector<int>& p, vector<ll>& a, int n, int s,
     return false;
 }
 
+// count edges starting from source with residual value > 0
+int dfs(vector<vector<ll>>& graph, vector<bool>& visited,int n, int x) {
+    if (visited[x]) return 0;
+    visited[x] = true;
+    int res = 0;
+    for (int i = 1; i <= n + 1; i++) {
+        if (graph[x][i] > 0 && !visited[i]) {
+            res++;
+            res += dfs(graph, visited, n, i);
+        }
+    }
+    return res;
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -34,7 +48,7 @@ int main() {
     int t;
 
     int n, m;
-    cin >> n >> m>>s>>t;
+    cin >> n >> m >> s >> t;
 
     //s = 0;
     //t = n + 1;
@@ -61,6 +75,11 @@ int main() {
         ans += a[t];
     }
 
+
     cout << ans << endl;
+
+    // vector<bool> visited(n+2, false);
+    // cout<<dfs(graph,visited,n,s)<<endl;
+
     return 0;
 }
