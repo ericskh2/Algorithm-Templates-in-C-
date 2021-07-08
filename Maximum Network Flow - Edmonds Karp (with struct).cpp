@@ -3,6 +3,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define maxn 250
+#define ll long long
 #define INF 0x3f3f3f3f
 
 struct Edge {
