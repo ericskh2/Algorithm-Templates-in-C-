@@ -27,6 +27,21 @@ bool bfs(vector<vector<ll>>& graph, vector<vector<int>>& e, vector<int>& p, vect
     return false;
 }
 
+// count edges starting from source with residual value > 0
+int dfs(vector<vector<ll>>& graph, vector<vector<int>>& e,vector<bool>& visited, int x) {
+    if (visited[x]) return 0;
+    visited[x] = true;
+    int res = 0;
+    for (int i = 0; i < e[x].size(); i++) {
+        int y = e[x][i];
+        if (graph[x][y]>0 && !visited[y]) {
+            res++;
+            res += dfs(graph, e, visited, y);
+        }
+    }
+    return res;
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
