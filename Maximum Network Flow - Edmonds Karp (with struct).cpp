@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define maxn 250
+#define maxn 251
 #define ll long long
 #define INF 0x3f3f3f3f
 
@@ -12,11 +12,11 @@ struct Edge {
 
 int n, m;
 vector<Edge> edges;
-vector<int> G[maxn];
-int a[maxn], p[maxn];
+vector<int> G[maxn+1];
+int a[maxn+1], p[maxn+1];
 
 void init(int n) {
-    for (int i = 0; i < n; i++) G[i].clear();
+    for (int i = 0; i <= n; i++) G[i].clear();
     edges.clear();
 }
 
