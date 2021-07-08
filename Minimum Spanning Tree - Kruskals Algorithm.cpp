@@ -38,14 +38,14 @@ void unionJoin(int a, int b) {
     }
 }
 
-ll kruskal(vector<pair<int,pair<int,int>>>& edges,int n) {
-    priority_queue<pair<int, pair<int, int>>,vector<pair<int, pair<int, int>>>,greater<pair<int, pair<int, int>>>> pq;
+ll kruskal(vector<pair<int, pair<int, int>>>& edges, int n) {
+    priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;
     for (auto e : edges) {
         pq.push(e);
     }
     ll ans = 0;
     int sets = n;
-    while (!pq.empty()) {
+    while (!pq.empty() && sets>1) {
         int dis = pq.top().first;
         int a = pq.top().second.first;
         int b = pq.top().second.second;
@@ -59,10 +59,10 @@ ll kruskal(vector<pair<int,pair<int,int>>>& edges,int n) {
             ans += dis;
             unionJoin(a, b);
             sets--;
-            
+
         }
     }
-    if (sets>1) return -1;
+    if (sets > 1) return -1;
     return ans;
 }
 
@@ -75,14 +75,14 @@ int main() {
 
         init(n);
 
-        vector<pair<int,pair<int,int>>> edges;
+        vector<pair<int, pair<int, int>>> edges;
         for (int i = 0; i < m; i++) {
             int a, b, c;
             cin >> a >> b >> c;
             edges.push_back({ c,{a,b} });
         }
 
-        ll ans = kruskal(edges,n);
+        ll ans = kruskal(edges, n);
 
         (ans != -1) ? cout << ans << endl : cout << "orz" << endl;
 
