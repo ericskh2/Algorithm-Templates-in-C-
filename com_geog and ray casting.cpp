@@ -48,6 +48,12 @@ bool cross(Line x, Line y){
     return false;
 }
 
+double distance(Line x, Point c){
+    Point a = x.p1;
+    Point b = x.p2;
+    return abs(det(a,b,c)) / sqrt((b.x-a.x)*(b.x-a.x)+(b.y-a.y)*(b.y-a.y));
+}
+
 int main() {
     int n;
     while(cin>>n){
