@@ -4,13 +4,11 @@ using namespace std;
 #define INF 0x3f3f3f3f
 
 const int maxn = 1000;
-
 struct suffix{
     int idx;
     int rnk;
     int nextrnk;
 };
-
 int sa[maxn+1];
 int ind[maxn+1];
 int height[maxn+1];
